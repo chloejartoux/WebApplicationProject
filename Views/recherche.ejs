@@ -1,0 +1,70 @@
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<link href="/css/recherche.css" rel="stylesheet" type="text/css">
+
+        <title>Projet Web</title>
+    </head>
+	<body>
+		<h1>Comparateur</h1>
+
+
+		<table>
+			<tr>
+				<th>Nom du restaurant</th>
+				<th>Categorie</th>
+				<th>Url Michelin</th>
+				<th>Promotion</th>
+				<th>Conditions</th>
+
+			</tr>
+
+
+
+				<% for(var i=0; i<Names.length; i++) {%>
+
+
+
+
+				<% var classDiv = "";
+                if(i%2 == 0) {
+                    classDiv = "impaire";
+                }
+                else {
+                    classDiv = "paire";
+                }
+                %>
+
+				<tr id="restaurant" class="<%=classDiv%>">
+
+
+
+
+
+
+					<td>  <%= Names[i] %></td>
+					<td>	<%=Categories[i]%></td>
+					<td> <a href="<%=UrlMichelins[i]%>">	<%=UrlMichelins[i]%><a/></td>
+					<td>	<%=Promotions[i]%> </td>
+					<td>	<%=Promotion_Menus[i]%></td>
+				</tr>
+				<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</table>
+
+	</body>
+</html>
