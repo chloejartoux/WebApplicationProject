@@ -12,7 +12,7 @@ var app=express();
 var urlMichelin="https://restaurant.michelin.fr/restaurants/paris/page-";
 var MongoClient = require("mongodb").MongoClient;
 var port=3500;
-var categorie,iString="",jString="",i=0,j=0,e="",id=1,pages=2,michelinURL="https://restaurant.michelin.fr";
+var categorie,iString="",jString="",i=0,j=0,e="",id=1,pages=73,michelinURL="https://restaurant.michelin.fr";
 var laFourchetteURL="https://www.lafourchette.com/recherche/autocomplete?searchText=";
 var EndUrl = "&localeCode=fr";
 var objNew;
@@ -28,8 +28,8 @@ app.get('/projet', function(req, res) {
 //Pour gérer les fonctions d'une maniére synchrones.
 
 
-var rule = new cron.RecurrenceRule();
-rule.hour = 6;
+//var rule = new cron.RecurrenceRule();
+//rule.hour = 6;
 
 
 waterfall([
@@ -43,9 +43,9 @@ waterfall([
     callback(null);
   },
  function(callback){
-   cron.scheduleJob(rule, function(){
+   //cron.scheduleJob(rule, function(){
       RestaurantLaFourchette();
-   });
+   //});
 
 
   	callback(null,"done");
@@ -180,7 +180,7 @@ function RestaurantLaFourchette(){
 
 
                 objNew={_id:element._id,Name:element.Name,Categorie:element.Categorie,MichelinUrl:element.MichelinUrl,idLaFourchette:id_resto,Promotion:promotion,promotion_menu:promotion_menu};
-                //probleme de repetition dans la base de donnee 
+                //probleme de repetition dans la base de donnee
 
 				        db.collection("restaurant").save(objNew,null,function(error,result){
 						if (error) throw error;
@@ -247,16 +247,16 @@ function ReadDataBase(){
           names.push(element.Name);
           categories.push(element.Categorie);
           urlMichelins.push(element.MichelinUrl);
-          if(element.Promotion != "")
-          {
+          //if(element.Promotion != "")
+          //{
                 promotions.push(element.Promotion);
                 promotion_menus.push(element.promotion_menu);
-          }
-          else
-          {
-                promotions.push("Pas de promotions pour le moment");
-                promotion_menus.push("");
-          }
+          //}
+          //else
+          //{
+                //promotions.push("Pas de promotions pour le moment");
+                //promotion_menus.push("");
+          //}
 
 
       });
